@@ -1,0 +1,80 @@
+﻿@model IEnumerable<WebApplication1.Models.Entities.EmployeeInfo>
+
+@{
+    ViewData["Title"] = "DisplayEmployee";
+    
+}
+
+<h4>@TempData["Message"]></h4>
+<h1>DisplayEmployee</h1>
+
+<p>
+    <a asp-action="Create" class="btn-outline-primary">Add Employee</a>
+    
+</p>
+<body style="background-image:url(https://cdn.pixabay.com/photo/2019/04/10/11/56/watercolor-4116932__480.png)">
+
+<form asp-action="DisplayEmployee" >
+
+    <label>Enter First Name</label>
+    <input type="text" name="searchFirstName" placeholder="First Name" style="margin:22px;"/>
+
+    <br />
+
+    <label>Enter Second Name</label>
+    <input type="text" name="searchLastName" placeholder="Last Name" style="align-items:flex-start" />
+
+    <input type="submit" name="btnSubmit" value="Search" />
+    <br />
+
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MMID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MMID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn-outline-dark" asp-route-id="@item.EmployeeId">Edit</a> |
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</body>
+</table>
